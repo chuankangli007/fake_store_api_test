@@ -1,0 +1,60 @@
+product_query: #商品查询
+  valid_ids: #有效ID
+    - id: 1  #直接把 valid_ids 整个列表传给 @pytest.mark.parametrize，pytest 会自动循环取每个字典：
+      expect_title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
+      expect_price: 109.95
+    - id: 2
+      expect_title: 'Mens Casual Premium Slim Fit T-Shirts '
+      expect_price: 22.3
+  invalid_id: 999 #无效ID
+product_create: #创建商品
+  valid_data: #有效的商品数据
+    title: "Test Laptop"
+    price: 4999.99
+    description: "A test laptop for automation"
+    category: "electronics"
+    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+  invalid_data:
+    title: "Invalid Product"
+    price: -100 #商品价格为负值，方便之后测试创建非法的商品
+    category: "clothes"
+product_update: #测试商品价格更新的功能
+  update_price: 8999.99
+
+user: #关于用户测试的相关数据
+  register_valid: #有效的用户数据
+    username: 'test_user_2026'
+    email: "test_user_2024@example.com"
+    password: 'Test123456'
+    name:
+      firstname: "Test"
+      lastname: "User"
+    address:
+      city: "Beijing"
+      street: "Test Street"
+      number: 123
+      zipcode: "100000"
+      geolocation:
+        lat: "39.9042"
+        long: "116.4074"
+    phone: "13800138000"
+  register_invalid: #无效的用户数据（邮箱格式错误）
+    username: 'test_user_invalid'
+    email: 'test_user_invalid.example.com'
+    password: 'Test123456'
+    name:
+      firstname: 'Test'
+      lastname: 'Invalid'
+      phone: '13900139000'
+  login_valid: #有效的登录数据,因为Fake store API没有记忆注册的功能，所以必须用它提供账号密码登录
+    username: 'johnd'
+    password: 'm38rmF$'
+cart: #购物车的测试数据
+  create_valid:
+    userId: 1 #之后会把它替换成注册用户ID，但是由于功能问题，我自己会直接给一个id
+    date: '2026-03-03'
+    products:
+      - productId: 1
+        quantity: 2
+      - productId: 2
+        quantity: 1
