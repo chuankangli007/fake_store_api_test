@@ -21,3 +21,4 @@ Thumbs.db
 
 # pytest 缓存
 .pytest_cache/
+test_report.html
